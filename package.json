@@ -1,0 +1,68 @@
+{
+  "name": "vscode-firebase-deploy",
+  "displayName": "Firebase Deploy",
+  "description": "Deploy to Firebase inside VSCode!",
+  "version": "0.0.0-development",
+  "publisher": "dungahk",
+  "engines": {
+    "vscode": "^1.28.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.sayHello"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.sayHello",
+        "title": "Hello World"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test",
+    "commit": "git-cz",
+    "travis-deploy-once": "travis-deploy-once",
+    "semantic-release": "semantic-release"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.42",
+    "@types/node": "^7.0.43",
+    "commitizen": "^3.0.4",
+    "cz-conventional-changelog": "2.1.0",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.1",
+    "vscode": "^1.1.6",
+    "travis-deploy-once": "^5.0.9",
+    "semantic-release": "^15.10.6"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pfa-stack/vscode-firebase-deploy.git"
+  },
+  "release": {
+    "plugins": {
+      "verifyConditions": ["@semantic-release/github"],
+      "analyzeCommits": "@semantic-release/commit-analyzer",
+      "prepare": [
+        "@semantic-release/github"
+      ],
+      "generateNotes": "@semantic-release/release-notes-generator",
+      "publish": [
+        "@semantic-release/github"
+      ]
+    }
+  }
+}
